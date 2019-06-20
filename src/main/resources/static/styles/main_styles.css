@@ -594,13 +594,13 @@ section
 	line-height: 50px;
 	color: #a3a3a3 !important;
 }
-.header_search_input::input-placeholder
-{
-	font-size: 16px !important;
-	font-weight: 300;
-	line-height: 50px;
-	color: #a3a3a3 !important;
-}
+/*.header_search_input::input-placeholder*/
+/*{*/
+	/*font-size: 16px !important;*/
+	/*font-weight: 300;*/
+	/*line-height: 50px;*/
+	/*color: #a3a3a3 !important;*/
+/*}*/
 .custom_dropdown
 {
 	width: calc((100% - 50px) * 0.399);
@@ -906,8 +906,8 @@ select option
 	position: absolute;
 	top: 100%;
 	left: 0;
-	/*visibility: hidden;
-	opacity: 0;*/
+	visibility: hidden;
+	opacity: 0;
 	min-width: 100%;
 	background: #FFFFFF;
 	box-shadow: 0px 10px 25px rgba(0,0,0,0.1);
@@ -3463,11 +3463,11 @@ select option
 	font-size: 16px;
 	color: rgba(0,0,0,0.3);
 }
-.newsletter_input::input-placeholder
-{
-	font-size: 16px;
-	color: rgba(0,0,0,0.3);
-}
+/*.newsletter_input::input-placeholder*/
+/*{*/
+	/*font-size: 16px;*/
+	/*color: rgba(0,0,0,0.3);*/
+/*}*/
 .newsletter_button
 {
 	position: absolute;
@@ -3527,10 +3527,10 @@ select option
 .footer .logo
 {
 	top: auto;
-	-webkit-transform: transform: none;
-    -moz-transform: transform: none;
-    -ms-transform: transform: none;
-    -o-transform: transform: none;
+	-webkit-transform:  none;
+    -moz-transform:  none;
+    -ms-transform:  none;
+    -o-transform:  none;
     transform: none;
 }
 .footer .logo a
