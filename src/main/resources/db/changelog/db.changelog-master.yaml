@@ -137,7 +137,7 @@ databaseChangeLog:
     author: vitaly_boshko
     changes:
     - createTable:
-        tableName: category_products
+        tableName: categories
         columns:
         - column:
             name: id
@@ -158,59 +158,59 @@ databaseChangeLog:
     author: vitaly_boshko
     changes:
     - insert:
-        tableName: category_products
+        tableName: categories
         columns:
         - column:
             name: name
             value: "computers and laptops"
     - insert:
-        tableName: category_products
+        tableName: categories
         columns:
         - column:
             name: name
             value: "cameras and photos"
     - insert:
-        tableName: category_products
+        tableName: categories
         columns:
         - column:
             name: name
             value: "hardware"
     - insert:
-        tableName: category_products
+        tableName: categories
         columns:
         - column:
             name: name
             value: "smartphones and tablets"
     - insert:
-        tableName: category_products
+        tableName: categories
         columns:
         - column:
             name: name
             value: "tv and audio"
     - insert:
-          tableName: category_products
-          columns:
-          - column:
-                name: name
-                value: "gadgets"
+        tableName: categories
+        columns:
+        - column:
+            name: name
+            value: "gadgets"
     - insert:
-          tableName: category_products
-          columns:
-          - column:
-                name: name
-                value: "car electronics"
+        tableName: categories
+        columns:
+        - column:
+            name: name
+            value: "car electronics"
     - insert:
-          tableName: category_products
-          columns:
-          - column:
-                name: name
-                value: "video games and consoles"
+        tableName: categories
+        columns:
+        - column:
+            name: name
+            value: "video games and consoles"
     - insert:
-          tableName: category_products
-          columns:
-          - column:
-                name: name
-                value: "accessories"
+        tableName: categories
+        columns:
+        - column:
+            name: name
+            value: "accessories"
 
 
 - changeSet:
@@ -233,13 +233,10 @@ databaseChangeLog:
             constraints:
               unique: true
               nullable: false
-        - column:
-            name: category_products_id
-            type: int
-            constraints:
-              foreignKeyName: fk_category_products_id
-              references: category_products(id)
-              nullable: false
+        -column:
+            name: price
+            type: bigdecimal
+
 
 - changeSet:
     id: 10
@@ -255,29 +252,92 @@ databaseChangeLog:
             name: category_products_id
             value: 4
     - insert:
-          tableName: products
-          columns:
-          - column:
-                name: name
-                value: "Samsung Charm Gold"
-          - column:
-                name: category_products_id
-                value: 4
+        tableName: products
+        columns:
+        - column:
+            name: name
+            value: "Samsung Charm Gold"
+        - column:
+            name: category_products_id
+            value: 4
     - insert:
-          tableName: products
-          columns:
-          - column:
-                name: name
-                value: "Lenovo IdeaPad"
-          - column:
-                name: category_products_id
-                value: 1
+        tableName: products
+        columns:
+        - column:
+            name: name
+            value: "Lenovo IdeaPad"
+        - column:
+            name: category_products_id
+            value: 1
     - insert:
-          tableName: products
-          columns:
-          - column:
-                name: name
-                value: "Apple iPod shuffle"
-          - column:
-                name: category_products_id
-                value: 6
+        tableName: products
+        columns:
+        - column:
+            name: name
+            value: "Apple iPod shuffle"
+        - column:
+            name: category_products_id
+            value: 6
+
+- changeSet:
+      id: 11
+      author: vitaly_boshko
+      changes:
+      - createTable:
+            tableName: products_categories
+            columns:
+            - column:
+                  name: product_id
+                  type: int
+                  constraints:
+                      foreignKeyName: fk_product_id
+                      references: products(id)
+                      nullable: false
+            - column:
+                  name: category_id
+                  type: int
+                  constraints:
+                      foreignKeyName: fk_category_id
+                      references: categories(id)
+                      nullable: false
+
+- changeSet:
+      id: 12
+      author: vitaly_boshko
+      changes:
+      - insert:
+            tableName: products_categories
+            columns:
+            - column:
+                  name: product_id
+                  value: 1
+            - column:
+                  name: category_id
+                  value: 4
+      - insert:
+            tableName: products_categories
+            columns:
+            - column:
+                  name: product_id
+                  value: 2
+            - column:
+                  name: category_id
+                  value: 4
+      - insert:
+            tableName: products_categories
+            columns:
+            - column:
+                  name: product_id
+                  value: 3
+            - column:
+                  name: category_id
+                  value: 1
+      - insert:
+            tableName: products_categories
+            columns:
+            - column:
+                  name: product_id
+                  value: 4
+            - column:
+                  name: category_id
+                  value: 6

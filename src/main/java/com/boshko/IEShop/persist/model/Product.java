@@ -1,6 +1,7 @@
 package com.boshko.IEShop.persist.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
@@ -15,6 +16,8 @@ public class Product {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "price")
+    private BigDecimal price;
 
     @ManyToOne
     @JoinColumn(name = "category_products_id")
@@ -45,19 +48,4 @@ public class Product {
         this.name = name;
     }
 
-//    public int getCategory_products_id() {
-//        return category_products_id;
-//    }
-//
-//    public void setCategory_products_id(int category_products_id) {
-//        this.category_products_id = category_products_id;
-//    }
-
-    public CategoryProducts getCategoryProducts() {
-        return category_products_id;
-    }
-
-    public void setCategoryProducts(CategoryProducts category_products_id) {
-        this.category_products_id = category_products_id;
-    }
 }
