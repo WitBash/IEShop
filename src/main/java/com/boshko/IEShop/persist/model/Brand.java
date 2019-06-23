@@ -2,25 +2,23 @@ package com.boshko.IEShop.persist.model;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
-@Table(name = "categories")
-public class CategoryProducts {
+@Table(name = "brands")
+public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", unique = true, nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "categories")
+    @OneToMany(
+            mappedBy = "brand",
+            orphanRemoval = true,
+            cascade = CascadeType.ALL)
     private List<Product> products;
-
-    public CategoryProducts() {
-
-    }
 
     public Long getId() {
         return id;
@@ -46,17 +44,7 @@ public class CategoryProducts {
         this.products = products;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CategoryProducts category = (CategoryProducts) o;
-        return id.equals(category.id) &&
-                name.equals(category.name);
-    }
+    public Brand() {
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name);
     }
 }
