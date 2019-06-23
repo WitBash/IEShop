@@ -1,42 +1,41 @@
-package com.boshko.IEShop.persist.model;
+package com.boshko.IEShop.controller.repr;
 
-import javax.persistence.*;
+import com.boshko.IEShop.persist.model.Brand;
+import com.boshko.IEShop.persist.model.CategoryProducts;
+import com.boshko.IEShop.persist.model.Picture;
+import com.boshko.IEShop.persist.model.Product;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-@Entity
-@Table(name = "products")
-public class Product {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+public class ProductRepr {
     private Long id;
 
-    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "price")
     private BigDecimal price;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "products_categories",
-                joinColumns = @JoinColumn(name = "product_id"),
-                inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<CategoryProducts> categories;
 
-    @ManyToOne(optional = false)
     private Brand brand;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-    @JoinTable(name = "products_pictures",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "picture_id"))
     private List<Picture> pictures;
 
-    public Product() {
+    private MultipartFile[] newPictures;
 
+    public ProductRepr() {
+    }
+
+    public ProductRepr(Product product) {
+        this.id = product.getId();
+        this.name = product.getName();
+        this.price = product.getPrice();
+        this.categories = product.getCategories();
+        this.brand = product.getBrand();
+        this.pictures = product.getPictures();
     }
 
     public Long getId() {
@@ -71,6 +70,13 @@ public class Product {
         this.categories = categories;
     }
 
+    public String getCategoriesAsString() {
+        return getCategories()
+                .stream()
+                .map(CategoryProducts::getName)
+                .collect(Collectors.joining(", "));
+    }
+
     public Brand getBrand() {
         return brand;
     }
@@ -85,5 +91,13 @@ public class Product {
 
     public void setPictures(List<Picture> pictures) {
         this.pictures = pictures;
+    }
+
+    public MultipartFile[] getNewPictures() {
+        return newPictures;
+    }
+
+    public void setNewPictures(MultipartFile[] newPictures) {
+        this.newPictures = newPictures;
     }
 }

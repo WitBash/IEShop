@@ -1,0 +1,304 @@
+databaseChangeLog:
+- logicalFilePath: db/changelog/db.changelog-hw-2.yaml
+
+- changeSet:
+    id: 1561306668046-1
+    author: vitaly_boshko (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              primaryKeyName: brandsPK
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(255)
+        tableName: brands
+
+- changeSet:
+    id: 1561306668046-2
+    author: vitaly_boshko (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              primaryKeyName: picturesPK
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: content_type
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: picture_data_id
+            type: BIGINT
+        tableName: pictures
+
+- changeSet:
+    id: 1561306668046-3
+    author: vitaly_boshko (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              primaryKeyName: pictures_dataPK
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: data
+            type: MEDIUMBLOB
+        tableName: pictures_data
+
+- changeSet:
+    id: 1561306668046-4
+    author: vitaly_boshko (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: product_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: picture_id
+            type: BIGINT
+        tableName: products_pictures
+
+- changeSet:
+    id: 1561306668046-5
+    author: vitaly_boshko (generated)
+    changes:
+    - addPrimaryKey:
+        columnNames: product_id, category_id
+        tableName: products_categories
+
+- changeSet:
+    id: 1561306668046-6
+    author: vitaly_boshko (generated)
+    changes:
+    - addPrimaryKey:
+        columnNames: user_id, role_id
+        tableName: users_roles
+
+- changeSet:
+    id: 1561306668046-7
+    author: vitaly_boshko (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: name
+        constraintName: UC_BRANDSNAME_COL
+        tableName: brands
+
+- changeSet:
+    id: 1561306668046-8
+    author: vitaly_boshko (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: picture_data_id
+        constraintName: UK_ehsu2tyinopypjox1ijxt3g3c
+        tableName: pictures
+
+- changeSet:
+    id: 1561306668046-9
+    author: vitaly_boshko (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: brand_id
+        baseTableName: products
+        constraintName: FKa3a4mpsfdf4d2y6r8ra3sc8mv
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: brands
+
+- changeSet:
+    id: 1561306668046-10
+    author: vitaly_boshko (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: picture_data_id
+        baseTableName: pictures
+        constraintName: FKe9cv52k04xoy6cj8xy308gnw3
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: pictures_data
+
+- changeSet:
+    id: 1561306668046-11
+    author: vitaly_boshko (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: product_id
+        baseTableName: products_pictures
+        constraintName: FKh3amnci4cl7xcl1al140xw79e
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: products
+
+- changeSet:
+    id: 1561306668046-12
+    author: vitaly_boshko (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: picture_id
+        baseTableName: products_pictures
+        constraintName: FKloucf8ggy74nmdej2jmvttvi4
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: pictures
+
+- changeSet:
+    id: 1561306668046-13
+    author: vitaly_boshko (generated)
+    changes:
+    - insert:
+        tableName: brands
+        columns:
+        - column:
+            name: name
+            value: "Xiaomi"
+    - insert:
+        tableName: brands
+        columns:
+        - column:
+            name: name
+            value: "Samsung"
+    - insert:
+        tableName: brands
+        columns:
+        - column:
+            name: name
+            value: "Lenovo"
+    - insert:
+        tableName: brands
+        columns:
+        - column:
+            name: name
+            value: "Apple"
+    rollback:
+
+- changeSet:
+    id: 1561306668046-14
+    author: vitaly_boshko
+    changes:
+    - insert:
+        tableName: products
+        columns:
+        - column:
+            name: name
+            value: "Xiaomi Redmi Note 4"
+        - column:
+            name: price
+            value: 350
+        - column:
+            name: brand_id
+            value: 1
+    - insert:
+        tableName: products
+        columns:
+        - column:
+            name: name
+            value: "Samsung Charm Gold"
+        - column:
+            name: price
+            value: 250
+        - column:
+            name: brand_id
+            value: 2
+    - insert:
+        tableName: products
+        columns:
+        - column:
+            name: name
+            value: "Lenovo IdeaPad"
+        - column:
+            name: price
+            value: 400
+        - column:
+            name: brand_id
+            value: 3
+    - insert:
+        tableName: products
+        columns:
+        - column:
+            name: name
+            value: "Apple iPod shuffle"
+        - column:
+            name: price
+            value: 200
+        - column:
+            name: brand_id
+            value: 4
+    rollback:
+
+- changeSet:
+    id: 1561306668046-15
+    author: vitaly_boshko
+    changes:
+    - insert:
+        tableName: products_categories
+        columns:
+        - column:
+            name: product_id
+            value: 1
+        - column:
+            name: category_id
+            value: 4
+    - insert:
+        tableName: products_categories
+        columns:
+        - column:
+            name: product_id
+            value: 2
+        - column:
+            name: category_id
+            value: 4
+    - insert:
+        tableName: products_categories
+        columns:
+        - column:
+            name: product_id
+            value: 3
+        - column:
+            name: category_id
+            value: 1
+    - insert:
+        tableName: products_categories
+        columns:
+        - column:
+            name: product_id
+            value: 4
+        - column:
+            name: category_id
+            value: 6
+    rollback:
+
+

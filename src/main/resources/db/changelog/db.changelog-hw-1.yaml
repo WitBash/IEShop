@@ -24,7 +24,6 @@ databaseChangeLog:
             name: password
             type: varchar(512)
             constraints:
-              unique: true
               nullable: false
         - column:
             name: first_name
@@ -50,6 +49,7 @@ databaseChangeLog:
         - column:
             name: password
             value: "$2a$10$uedJ6jkBS08x5mxZY6gV6.LAKSd202CiVutxz5VDq3TIyj9alkmIq"
+    rollback:
 
 - changeSet:
     id: 3
@@ -89,6 +89,7 @@ databaseChangeLog:
         - column:
             name: name
             value: "ROLE_CLIENT"
+    rollback:
 
 
 - changeSet:
@@ -127,6 +128,7 @@ databaseChangeLog:
         - column:
             name: role_id
             value: 1
+    rollback:
 
 - changeSet:
     id: 7
@@ -137,7 +139,7 @@ databaseChangeLog:
         columns:
         - column:
             name: id
-            type: int
+            type: BIGINT
             autoIncrement: true
             constraints:
               primaryKey: true
@@ -153,72 +155,12 @@ databaseChangeLog:
     id: 8
     author: vitaly_boshko
     changes:
-    - insert:
-        tableName: categories
-        columns:
-        - column:
-            name: name
-            value: "computers and laptops"
-    - insert:
-        tableName: categories
-        columns:
-        - column:
-            name: name
-            value: "cameras and photos"
-    - insert:
-        tableName: categories
-        columns:
-        - column:
-            name: name
-            value: "hardware"
-    - insert:
-        tableName: categories
-        columns:
-        - column:
-            name: name
-            value: "smartphones and tablets"
-    - insert:
-        tableName: categories
-        columns:
-        - column:
-            name: name
-            value: "tv and audio"
-    - insert:
-        tableName: categories
-        columns:
-        - column:
-            name: name
-            value: "gadgets"
-    - insert:
-        tableName: categories
-        columns:
-        - column:
-            name: name
-            value: "car electronics"
-    - insert:
-        tableName: categories
-        columns:
-        - column:
-            name: name
-            value: "video games and consoles"
-    - insert:
-        tableName: categories
-        columns:
-        - column:
-            name: name
-            value: "accessories"
-
-
-- changeSet:
-    id: 9
-    author: vitaly_boshko
-    changes:
     - createTable:
         tableName: products
         columns:
         - column:
             name: id
-            type: int
+            type: BIGINT
             autoIncrement: true
             constraints:
               primaryKey: true
@@ -227,7 +169,6 @@ databaseChangeLog:
             name: name
             type: varchar(50)
             constraints:
-              unique: true
               nullable: false
         - column:
             name: price
@@ -238,62 +179,8 @@ databaseChangeLog:
             constraints:
               nullable: false
 
-
 - changeSet:
-    id: 10
-    author: vitaly_boshko
-    changes:
-    - insert:
-        tableName: products
-        columns:
-        - column:
-            name: name
-            value: "Xiaomi Redmi Note 4"
-        - column:
-            name: price
-            value: 350
-        - column:
-            name: brand_id
-            value: 1
-    - insert:
-        tableName: products
-        columns:
-        - column:
-            name: name
-            value: "Samsung Charm Gold"
-        - column:
-            name: price
-            value: 250
-        - column:
-            name: brand_id
-            value: 2
-    - insert:
-        tableName: products
-        columns:
-        - column:
-            name: name
-            value: "Lenovo IdeaPad"
-        - column:
-            name: price
-            value: 400
-        - column:
-            name: brand_id
-            value: 3
-    - insert:
-        tableName: products
-        columns:
-        - column:
-            name: name
-            value: "Apple iPod shuffle"
-        - column:
-            name: price
-            value: 200
-        - column:
-            name: brand_id
-            value: 4
-
-- changeSet:
-    id: 11
+    id: 9
     author: vitaly_boshko
     changes:
     - createTable:
@@ -301,56 +188,75 @@ databaseChangeLog:
         columns:
         - column:
             name: product_id
-            type: int
+            type: BIGINT
             constraints:
               foreignKeyName: fk_product_id
               references: products(id)
               nullable: false
         - column:
             name: category_id
-            type: int
+            type: BIGINT
             constraints:
               foreignKeyName: fk_category_id
               references: categories(id)
               nullable: false
 
 - changeSet:
-    id: 12
-    author: vitaly_boshko
-    changes:
-    - insert:
-        tableName: products_categories
-        columns:
-        - column:
-            name: product_id
-            value: 1
-        - column:
-            name: category_id
-            value: 4
-    - insert:
-        tableName: products_categories
-        columns:
-        - column:
-            name: product_id
-            value: 2
-        - column:
-            name: category_id
-            value: 4
-    - insert:
-        tableName: products_categories
-        columns:
-        - column:
-            name: product_id
-            value: 3
-        - column:
-            name: category_id
-            value: 1
-    - insert:
-        tableName: products_categories
-        columns:
-        - column:
-            name: product_id
-            value: 4
-        - column:
-            name: category_id
-            value: 6
+      id: 10
+      author: vitaly_boshko
+      changes:
+      - insert:
+            tableName: categories
+            columns:
+            - column:
+                  name: name
+                  value: "computers and laptops"
+      - insert:
+            tableName: categories
+            columns:
+            - column:
+                  name: name
+                  value: "cameras and photos"
+      - insert:
+            tableName: categories
+            columns:
+            - column:
+                  name: name
+                  value: "hardware"
+      - insert:
+            tableName: categories
+            columns:
+            - column:
+                  name: name
+                  value: "smartphones and tablets"
+      - insert:
+            tableName: categories
+            columns:
+            - column:
+                  name: name
+                  value: "tv and audio"
+      - insert:
+            tableName: categories
+            columns:
+            - column:
+                  name: name
+                  value: "gadgets"
+      - insert:
+            tableName: categories
+            columns:
+            - column:
+                  name: name
+                  value: "car electronics"
+      - insert:
+            tableName: categories
+            columns:
+            - column:
+                  name: name
+                  value: "video games and consoles"
+      - insert:
+            tableName: categories
+            columns:
+            - column:
+                  name: name
+                  value: "accessories"
+      rollback:

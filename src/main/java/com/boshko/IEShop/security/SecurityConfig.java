@@ -61,10 +61,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.setPasswordEncoder(passwordEncoder());
         return auth;
     }
-
-    @Bean
-    public UserService userService(UserRepository userRepository, RoleRepository roleRepository,
-                                   BCryptPasswordEncoder passwordEncoder) {
-        return new UserServiceJpaImpl(userRepository, roleRepository, passwordEncoder);
-    }
 }

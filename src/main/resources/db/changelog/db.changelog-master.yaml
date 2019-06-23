@@ -15,3 +15,14 @@ databaseChangeLog:
       changes:
         - tagDatabase:
             tag: hw_1
+
+  - include:
+      file: db.changelog-hw-2.yaml
+      relativeToChangelogFile: true
+
+  - changeSet:
+      id: hw_2
+      author: vitaly_boshko
+      changes:
+        - tagDatabase:
+            tag: hw_2
