@@ -1,6 +1,6 @@
 databaseChangeLog:
 - changeSet:
-    id: 1561306668046-1
+    id: 1561398006510-1
     author: vitaly_boshko (generated)
     changes:
     - createTable:
@@ -19,7 +19,7 @@ databaseChangeLog:
             type: VARCHAR(255)
         tableName: brands
 - changeSet:
-    id: 1561306668046-2
+    id: 1561398006510-2
     author: vitaly_boshko (generated)
     changes:
     - createTable:
@@ -48,7 +48,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: pictures
 - changeSet:
-    id: 1561306668046-3
+    id: 1561398006510-3
     author: vitaly_boshko (generated)
     changes:
     - createTable:
@@ -67,7 +67,7 @@ databaseChangeLog:
             type: MEDIUMBLOB
         tableName: pictures_data
 - changeSet:
-    id: 1561306668046-4
+    id: 1561398006510-4
     author: vitaly_boshko (generated)
     changes:
     - createTable:
@@ -84,21 +84,21 @@ databaseChangeLog:
             type: BIGINT
         tableName: products_pictures
 - changeSet:
-    id: 1561306668046-5
+    id: 1561398006510-5
     author: vitaly_boshko (generated)
     changes:
     - addPrimaryKey:
         columnNames: product_id, category_id
         tableName: products_categories
 - changeSet:
-    id: 1561306668046-6
+    id: 1561398006510-6
     author: vitaly_boshko (generated)
     changes:
     - addPrimaryKey:
         columnNames: user_id, role_id
         tableName: users_roles
 - changeSet:
-    id: 1561306668046-7
+    id: 1561398006510-7
     author: vitaly_boshko (generated)
     changes:
     - addUniqueConstraint:
@@ -106,7 +106,7 @@ databaseChangeLog:
         constraintName: UC_BRANDSNAME_COL
         tableName: brands
 - changeSet:
-    id: 1561306668046-8
+    id: 1561398006510-8
     author: vitaly_boshko (generated)
     changes:
     - addUniqueConstraint:
@@ -114,7 +114,7 @@ databaseChangeLog:
         constraintName: UK_ehsu2tyinopypjox1ijxt3g3c
         tableName: pictures
 - changeSet:
-    id: 1561306668046-9
+    id: 1561398006510-9
     author: vitaly_boshko (generated)
     changes:
     - addForeignKeyConstraint:
@@ -126,7 +126,7 @@ databaseChangeLog:
         referencedColumnNames: id
         referencedTableName: brands
 - changeSet:
-    id: 1561306668046-10
+    id: 1561398006510-10
     author: vitaly_boshko (generated)
     changes:
     - addForeignKeyConstraint:
@@ -138,7 +138,7 @@ databaseChangeLog:
         referencedColumnNames: id
         referencedTableName: pictures_data
 - changeSet:
-    id: 1561306668046-11
+    id: 1561398006510-11
     author: vitaly_boshko (generated)
     changes:
     - addForeignKeyConstraint:
@@ -150,7 +150,7 @@ databaseChangeLog:
         referencedColumnNames: id
         referencedTableName: products
 - changeSet:
-    id: 1561306668046-12
+    id: 1561398006510-12
     author: vitaly_boshko (generated)
     changes:
     - addForeignKeyConstraint:

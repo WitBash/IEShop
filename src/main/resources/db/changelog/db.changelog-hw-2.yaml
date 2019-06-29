@@ -205,100 +205,100 @@ databaseChangeLog:
             value: "Apple"
     rollback:
 
-- changeSet:
-    id: 1561306668046-14
-    author: vitaly_boshko
-    changes:
-    - insert:
-        tableName: products
-        columns:
-        - column:
-            name: name
-            value: "Xiaomi Redmi Note 4"
-        - column:
-            name: price
-            value: 350
-        - column:
-            name: brand_id
-            value: 1
-    - insert:
-        tableName: products
-        columns:
-        - column:
-            name: name
-            value: "Samsung Charm Gold"
-        - column:
-            name: price
-            value: 250
-        - column:
-            name: brand_id
-            value: 2
-    - insert:
-        tableName: products
-        columns:
-        - column:
-            name: name
-            value: "Lenovo IdeaPad"
-        - column:
-            name: price
-            value: 400
-        - column:
-            name: brand_id
-            value: 3
-    - insert:
-        tableName: products
-        columns:
-        - column:
-            name: name
-            value: "Apple iPod shuffle"
-        - column:
-            name: price
-            value: 200
-        - column:
-            name: brand_id
-            value: 4
-    rollback:
-
-- changeSet:
-    id: 1561306668046-15
-    author: vitaly_boshko
-    changes:
-    - insert:
-        tableName: products_categories
-        columns:
-        - column:
-            name: product_id
-            value: 1
-        - column:
-            name: category_id
-            value: 4
-    - insert:
-        tableName: products_categories
-        columns:
-        - column:
-            name: product_id
-            value: 2
-        - column:
-            name: category_id
-            value: 4
-    - insert:
-        tableName: products_categories
-        columns:
-        - column:
-            name: product_id
-            value: 3
-        - column:
-            name: category_id
-            value: 1
-    - insert:
-        tableName: products_categories
-        columns:
-        - column:
-            name: product_id
-            value: 4
-        - column:
-            name: category_id
-            value: 6
-    rollback:
+#- changeSet:
+#    id: 1561306668046-14
+#    author: vitaly_boshko
+#    changes:
+#    - insert:
+#        tableName: products
+#        columns:
+#        - column:
+#            name: name
+#            value: "Xiaomi Redmi Note 4"
+#        - column:
+#            name: price
+#            value: 350
+#        - column:
+#            name: brand_id
+#            value: 1
+#    - insert:
+#        tableName: products
+#        columns:
+#        - column:
+#            name: name
+#            value: "Samsung Charm Gold"
+#        - column:
+#            name: price
+#            value: 250
+#        - column:
+#            name: brand_id
+#            value: 2
+#    - insert:
+#        tableName: products
+#        columns:
+#        - column:
+#            name: name
+#            value: "Lenovo IdeaPad"
+#        - column:
+#            name: price
+#            value: 400
+#        - column:
+#            name: brand_id
+#            value: 3
+#    - insert:
+#        tableName: products
+#        columns:
+#        - column:
+#            name: name
+#            value: "Apple iPod shuffle"
+#        - column:
+#            name: price
+#            value: 200
+#        - column:
+#            name: brand_id
+#            value: 4
+#    rollback:
+#
+#- changeSet:
+#    id: 1561306668046-15
+#    author: vitaly_boshko
+#    changes:
+#    - insert:
+#        tableName: products_categories
+#        columns:
+#        - column:
+#            name: product_id
+#            value: 1
+#        - column:
+#            name: category_id
+#            value: 4
+#    - insert:
+#        tableName: products_categories
+#        columns:
+#        - column:
+#            name: product_id
+#            value: 2
+#        - column:
+#            name: category_id
+#            value: 4
+#    - insert:
+#        tableName: products_categories
+#        columns:
+#        - column:
+#            name: product_id
+#            value: 3
+#        - column:
+#            name: category_id
+#            value: 1
+#    - insert:
+#        tableName: products_categories
+#        columns:
+#        - column:
+#            name: product_id
+#            value: 4
+#        - column:
+#            name: category_id
+#            value: 6
+#    rollback:
 
 

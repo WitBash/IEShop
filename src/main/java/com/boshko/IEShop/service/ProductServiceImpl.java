@@ -12,12 +12,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class ProductServiceImpl implements ProductService {
+public class ProductServiceImpl implements ProductService, Serializable {
     private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
 
     private final ProductRepository productRepository;
@@ -31,12 +32,7 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     public List<ProductRepr> findAll() {
         return productRepository.findAll().stream()
-                .map(new Function<Product, ProductRepr>() {
-                    @Override
-                    public ProductRepr apply(Product product) {
-                        return new ProductRepr(product);
-                    }
-                })
+                .map(ProductRepr::new)
                 .collect(Collectors.toList());
     }
 
