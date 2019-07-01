@@ -45,7 +45,7 @@
                         <div class="top_bar_user">
                             <div class="user_icon"><img th:src="@{/images/user.svg}" alt=""></div>
                             <div><a href="#">Register</a></div>
-                            <div><a href="#">Sign in</a></div>
+                            <div><a th:href="@{/login}">Sign in</a></div>
                         </div>
                     </div>
                 </div>
@@ -112,10 +112,10 @@
                             <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                 <div class="cart_icon">
                                     <img th:src="@{/images/cart.png}" alt="">
-                                    <div class="cart_count"><span>10</span></div>
+                                    <div class="cart_count" th:text="${@cartService.itemsQty}"><span>10</span></div>
                                 </div>
                                 <div class="cart_content">
-                                    <div class="cart_text"><a href="#">Cart</a></div>
+                                    <div class="cart_text"><a th:href="@{/cart}">Cart</a></div>
                                     <div class="cart_price">$85</div>
                                 </div>
                             </div>

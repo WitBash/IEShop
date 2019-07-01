@@ -1,10 +1,10 @@
 package com.boshko.IEShop.security;
 
-import com.boshko.IEShop.persist.repo.RoleRepository;
-import com.boshko.IEShop.persist.repo.UserRepository;
 import com.boshko.IEShop.service.UserService;
-import com.boshko.IEShop.service.UserServiceJpaImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -15,10 +15,18 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import javax.servlet.http.HttpSessionEvent;
+import javax.servlet.http.HttpSessionListener;
+import java.util.Date;
+import java.util.Enumeration;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
+
     private UserService userService;
 
     @Autowired
@@ -60,5 +68,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.setUserDetailsService(userService);
         auth.setPasswordEncoder(passwordEncoder());
         return auth;
+    }
+
+    @Bean
+    public ServletListenerRegistrationBean<HttpSessionListener> sessionListener()
+    {
+        return new ServletListenerRegistrationBean<>(new HttpSessionListener() {
+            @Override
+            public void sessionCreated(HttpSessionEvent se) {
+                logger.info("HTTP Session {} created at {} with max inactivity time {}",
+                        se.getSession().getId(), new Date(se.getSession().getCreationTime()), se.getSession().getMaxInactiveInterval());
+            }
+
+            @Override
+            public void sessionDestroyed(HttpSessionEvent se) {
+                logger.info("HTTP Session {} destroyed. Last access time {}",
+                        se.getSession().getId(), new Date(se.getSession().getLastAccessedTime()));
+
+                Enumeration<String> attributeNames = se.getSession().getAttributeNames();
+                while (attributeNames.hasMoreElements()) {
+                    String name = attributeNames.nextElement();
+                    logger.info("Attribute {} value {}", name, se.getSession().getAttribute(name));
+                }
+            }
+        });
     }
 }
