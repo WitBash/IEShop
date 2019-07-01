@@ -12,4 +12,6 @@ public interface UserService extends UserDetailsService {
     boolean save(SystemUser systemUser);
 
     List<SystemUser> findAll();
+
+    void delete(Long id);
 }

@@ -1,6 +1,8 @@
 package com.boshko.IEShop.persist.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -12,20 +14,28 @@ public class Product {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "price")
+    private BigDecimal price;
 
-    @ManyToOne
-    @JoinColumn(name = "category_products_id")
-    private CategoryProducts category_products_id;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "products_categories",
+                joinColumns = @JoinColumn(name = "product_id"),
+                inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<CategoryProducts> categories;
+
+    @ManyToOne(optional = false)
+    private Brand brand;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinTable(name = "products_pictures",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "picture_id"))
+    private List<Picture> pictures;
 
     public Product() {
-
-    }
-
-    public Product(String name) {
-        this.name = name;
 
     }
 
@@ -45,19 +55,35 @@ public class Product {
         this.name = name;
     }
 
-//    public int getCategory_products_id() {
-//        return category_products_id;
-//    }
-//
-//    public void setCategory_products_id(int category_products_id) {
-//        this.category_products_id = category_products_id;
-//    }
-
-    public CategoryProducts getCategoryProducts() {
-        return category_products_id;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setCategoryProducts(CategoryProducts category_products_id) {
-        this.category_products_id = category_products_id;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Set<CategoryProducts> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<CategoryProducts> categories) {
+        this.categories = categories;
+    }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
+    public List<Picture> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<Picture> pictures) {
+        this.pictures = pictures;
     }
 }

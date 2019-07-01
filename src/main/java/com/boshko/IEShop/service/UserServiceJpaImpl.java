@@ -65,6 +65,12 @@ public class UserServiceJpaImpl implements UserService{
     }
 
     @Override
+    @Transactional
+    public void delete(Long id) {
+        userRepository.deleteById(id);
+    }
+
+    @Override
     public List<SystemUser> findAll() {
         return userRepository.findAll().stream()
                 .map(SystemUser::new)
