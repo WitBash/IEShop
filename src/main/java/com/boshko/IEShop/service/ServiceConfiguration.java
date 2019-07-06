@@ -6,7 +6,10 @@ import com.boshko.IEShop.persist.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.context.WebApplicationContext;
 
 @Configuration
 public class ServiceConfiguration {
@@ -20,5 +23,11 @@ public class ServiceConfiguration {
     @Bean
     public ProductService productService(ProductRepository productRepository) {
         return new ProductServiceImpl(productRepository);
+    }
+
+    @Bean
+    @Scope(scopeName = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
+    public CartService cartService() {
+        return new CartServiceImpl();
     }
 }

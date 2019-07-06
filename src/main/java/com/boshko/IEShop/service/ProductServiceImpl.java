@@ -1,5 +1,6 @@
 package com.boshko.IEShop.service;
 
+import com.boshko.IEShop.aspect.TrackTime;
 import com.boshko.IEShop.controller.repr.ProductRepr;
 import com.boshko.IEShop.persist.model.Picture;
 import com.boshko.IEShop.persist.model.PictureData;
@@ -28,6 +29,7 @@ public class ProductServiceImpl implements ProductService, Serializable {
         this.productRepository = productRepository;
     }
 
+    @TrackTime
     @Override
     @Transactional
     public List<ProductRepr> findAll() {
