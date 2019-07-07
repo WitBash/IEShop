@@ -6,12 +6,13 @@ import com.boshko.IEShop.persist.model.Picture;
 import com.boshko.IEShop.persist.model.Product;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class ProductRepr {
+public class ProductRepr implements Serializable {
     private Long id;
 
     private String name;

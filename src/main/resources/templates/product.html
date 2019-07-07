@@ -35,8 +35,8 @@
                 <div class="col-lg-2 order-lg-1 order-2">
                     <ul class="image_list">
                         <th:block th:each="pic : *{pictures}" class="product-preview">
-                            <li th:data-image="@{/picture/{pictureId}(pictureId=${pic.id})}"><img
-                                    th:src="@{/picture/{pictureId}(pictureId=${pic.id})}" alt=""></li>
+                            <li th:data-image="@{/picture/{pictureId}(pictureId=${pic.id})}">
+                                <img th:src="@{/picture/{pictureId}(pictureId=${pic.id})}" alt=""></li>
                         </th:block>
                     </ul>
                 </div>

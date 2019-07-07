@@ -10,8 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -46,19 +45,22 @@ public class MainController {
         return "blog_single";
     }
 
-    @GetMapping("/cart")
-    public String cartPage() {
+    @RequestMapping(value = "/cart", method = RequestMethod.GET)
+    public String cartPage (Model model, HttpSession httpSession){
+        model.addAttribute("product",httpSession.getAttribute("product"));
         return "cart";
     }
 
     @PostMapping("/cart/update")
-    public String updateCart(CartItemRepr cartItemRepr, HttpServletRequest httpServletRequest) {
+    public String updateCart(Model model, CartItemRepr cartItemRepr, HttpServletRequest httpServletRequest) {
         logger.info("Update customer cart");
         ProductRepr productRepr = productService.findById(cartItemRepr.getProductId());
 
         if (productRepr != null) {
             cartService.addItemQty(new ProductInfo(productRepr, "", ""), cartItemRepr.getQty());
         }
+        HttpSession session = httpServletRequest.getSession();
+        session.setAttribute("product", productRepr);
         return "redirect:" + cartItemRepr.getPageUrl();
     }
 
