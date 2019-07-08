@@ -13,12 +13,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.transaction.Transactional;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
+@Transactional
 public class UserServiceJpaImpl implements UserService{
 
     private UserRepository userRepository;
@@ -34,20 +32,21 @@ public class UserServiceJpaImpl implements UserService{
     }
 
     @Override
-    public SystemUser findById(Long id) {
-        return new SystemUser(userRepository.findById(id).get());
+    public Optional<SystemUser> findById(Long id) {
+        return userRepository.findById(id).map(SystemUser::new);
     }
 
     @Override
-    @Transactional
-    public SystemUser findByUserName(String username) {
-        User user = userRepository.findOneByUserName(username);
-        return new SystemUser(user.getUserName(), user.getPassword(),
-                user.getFirstName(), user.getLastName(), user.getEmail(), user.getRoles());
+    public Optional<SystemUser> findByUserName(String username) {
+        return userRepository.findOneByUserName(username).map(SystemUser::new);
     }
 
     @Override
-    @Transactional
+    public boolean existsUserByEmail(String email) {
+        return userRepository.existsUserByEmail(email);
+    }
+
+    @Override
     public boolean save(SystemUser systemUser) {
         User user = systemUser.getId() != null ? userRepository
                 .findById(systemUser.getId())
@@ -65,7 +64,6 @@ public class UserServiceJpaImpl implements UserService{
     }
 
     @Override
-    @Transactional
     public void delete(Long id) {
         userRepository.deleteById(id);
     }
@@ -80,12 +78,12 @@ public class UserServiceJpaImpl implements UserService{
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        SystemUser user = findByUserName(userName);
+        Optional<SystemUser> user = findByUserName(userName);
         if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password");
         }
-        return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(),
-                mapRolesToAuthorities(user.getRoles()));
+        return new org.springframework.security.core.userdetails.User(user.get().getUserName(), user.get().getPassword(),
+                mapRolesToAuthorities(user.get().getRoles()));
     }
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
