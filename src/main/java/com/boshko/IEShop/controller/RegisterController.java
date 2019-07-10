@@ -12,7 +12,7 @@ import javax.validation.Valid;
 @Controller
 public class RegisterController {
 
-    @GetMapping("/register")
+    @GetMapping("/registration")
     public String registerForm(SignupForm signupForm) {
         return "register";
     }
