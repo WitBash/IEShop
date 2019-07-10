@@ -1,6 +1,8 @@
 package com.boshko.IEShop.controller.repr;
 
-public class CategoryRepr {
+import java.io.Serializable;
+
+public class CategoryRepr implements Serializable {
     private long id;
 
     private String name;
