@@ -46,6 +46,7 @@
                             <div class="user_icon"><img th:src="@{/images/user.svg}" alt=""></div>
                             <div><a th:href="@{/registration}">Register</a></div>
                             <div><a th:href="@{/login}">Sign in</a></div>
+                            <div><a id="chatLink" href="#myModal" data-backdrop="false" data-toggle="modal">Send Message</a></div>
                         </div>
                     </div>
                 </div>
@@ -339,6 +340,8 @@
             </div>
         </div>
     </div>
+
+    <div th:replace="fragments/chat.html :: chat"></div>
 
 </header>
 </body>
