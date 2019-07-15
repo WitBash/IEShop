@@ -30,14 +30,14 @@ function sendMessage() {
     var textInput = $("#message-text");
     stompClient.send("/chat_in/send_message", {},
         JSON.stringify({
-            'username' : 'noname',
+            'username': 'noname',
             'message': textInput.val()
         }));
     $("ul.chat").append(buildMessageHtml('noname', textInput.val(), true));
 }
 
 function buildMessageHtml(username, message, direction) {
-    return  '<li class="' + (direction ? 'left' : 'right') + ' clearfix">' +
+    return '<li class="' + (direction ? 'left' : 'right') + ' clearfix">' +
         '<span class="chat-img ' + (direction ? 'pull-left' : 'pull-right') + '">' +
         '<img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle"/>' +
         '</span>' +
@@ -51,7 +51,9 @@ function buildMessageHtml(username, message, direction) {
 }
 
 $(function () {
-    $( "#btn-send" ).click(function() { sendMessage(); });
+    $("#btn-send").click(function () {
+        sendMessage();
+    });
 });
 
 connect();
