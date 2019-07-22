@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-master.yaml
+  - preConditions:
+      - runningAs:
+          username: root
+          password: root
+
+  - include:
+      file: db.changelog-hw-1.yaml
+      relativeToChangelogFile: true
+
+  - changeSet:
+      id: hw_1
+      author: vitaly_boshko
+      changes:
+        - tagDatabase:
+            tag: hw_1
+
+  - include:
+      file: db.changelog-hw-2.yaml
+      relativeToChangelogFile: true
+
+  - changeSet:
+      id: hw_2
+      author: vitaly_boshko
+      changes:
+        - tagDatabase:
+            tag: hw_2

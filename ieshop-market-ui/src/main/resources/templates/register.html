@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="OneTech shop project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap4/bootstrap.min.css}">
+    <link th:href="@{/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/cart_styles.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/cart_responsive.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/contact_styles.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/contact_responsive.css}">
+</head>
+
+<body>
+
+<div class="super_container">
+
+    <!-- Header -->
+
+    <header th:replace="fragments/header.html :: header"></header>
+
+    <!-- Cart -->
+
+    <div class="cart_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="cart_container">
+                        <div class="cart_title">Register</div>
+                        <div class="cart_items">
+                            <form class="login-form" th:object="${signupForm}" th:action="@{/signup}" method="POST">
+                                <div class="form-group">
+                                    <input class="newsletter_input" type="email" th:field="*{email}"
+                                           placeholder="Email address">
+                                    <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}"
+                                           th:errors="*{email}"></small>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="button contact_submit_button">Register</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter -->
+
+    <div th:replace="fragments/footer.html :: newsletter"></div>
+
+    <!--Footer-->
+
+    <footer th:replace="fragments/footer.html :: footer"></footer>
+
+    <!--Copyright-->
+
+    <div th:replace="fragments/footer.html :: copyright"></div>
+
+</div>
+
+<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/styles/bootstrap4/popper.js}"></script>
+<script th:src="@{/styles/bootstrap4/bootstrap.min.js}"></script>
+<script th:src="@{/plugins/greensock/TweenMax.min.js}"></script>
+<script th:src="@{/plugins/greensock/TimelineMax.min.js}"></script>
+<script th:src="@{/plugins/scrollmagic/ScrollMagic.min.js}"></script>
+<script th:src="@{/plugins/greensock/animation.gsap.min.js}"></script>
+<script th:src="@{/plugins/greensock/ScrollToPlugin.min.js}"></script>
+<script th:src="@{/plugins/easing/easing.js}"></script>
+<script th:src="@{/js/cart_custom.js}"></script>
+</body>
+
+</html>
