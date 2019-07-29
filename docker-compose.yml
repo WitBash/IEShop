@@ -1,0 +1,65 @@
+version: '2'
+
+services:
+  # Redis storage for Session data
+  redis:
+    image: 'bitnami/redis:latest'
+    environment:
+      - 'ALLOW_EMPTY_PASSWORD=yes'
+    ports:
+      - '6379:6379'
+
+  # Eureka server for service discovery
+  ieshop-market-eureka-server:
+    image: 'registry.heroku.com/ieshop-market-eureka/web:latest'
+    ports:
+      - '8761:8761'
+
+  ieshop-market-chatbot-1:
+    image: 'registry.heroku.com/ieshop-market-chatbot/web:latest'
+    environment:
+      - 'BOT_NAME=chatbot1'
+      - 'HOST_NAME=ieshop-market-chatbot-1'
+      - 'HOST_PORT=5000'
+      - 'EUREKA_URI=http://ieshop-market-eureka-server:8761/eureka'
+    depends_on:
+      - ieshop-market-eureka-server
+
+  ieshop-market-chatbot-2:
+
+    image: 'registry.heroku.com/ieshop-market-chatbot/web:latest'
+    environment:
+      - 'BOT_NAME=chatbot2'
+      - 'HOST_NAME=ieshop-market-chatbot-2'
+      - 'HOST_PORT=5000'
+      - 'EUREKA_URI=http://ieshop-market-eureka-server:8761/eureka'
+    depends_on:
+      - ieshop-market-eureka-server
+
+  ieshop-market-chatbot-3:
+    image: 'registry.heroku.com/ieshop-market-chatbot/web:latest'
+    environment:
+      - 'BOT_NAME=chatbot3'
+      - 'HOST_NAME=ieshop-market-chatbot-3'
+      - 'HOST_PORT=5000'
+      - 'EUREKA_URI=http://ieshop-market-eureka-server:8761/eureka'
+    depends_on:
+      - ieshop-market-eureka-server
+
+  ieshop-market-ui:
+    image: 'registry.heroku.com/ieshop-market-ui/web:latest'
+    environment:
+      - 'JDBC_DATABASE_URL=jdbc:mysql://host.docker.internal:3306/ieshop_db?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC'
+      - 'JDBC_DATABASE_USERNAME=root'
+      - 'JDBC_DATABASE_PASSWORD=root'
+      - 'REDIS_URL=redis'
+      - 'HOST_NAME=ieshop-market-ui'
+      - 'EUREKA_URI=http://ieshop-market-eureka-server:8761/eureka'
+    ports:
+      - '8081:8081'
+    depends_on:
+      - redis
+      - ieshop-market-eureka-server
+      - ieshop-market-chatbot-1
+      - ieshop-market-chatbot-2
+      - ieshop-market-chatbot-3
