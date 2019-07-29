@@ -4,8 +4,8 @@
       xsi:schemaLocation="http://www.springframework.org/schema/webflow
                           http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
-    <var name="basicInfo" class="com.boshko.IEShop.flow.register.BasicUserInfo" />
-    <var name="personalInfo" class="com.boshko.IEShop.flow.register.PersonalUserInfo" />
+    <var name="basicInfo" class="com.boshko.ieshop.flow.register.BasicUserInfo" />
+    <var name="personalInfo" class="com.boshko.ieshop.flow.register.PersonalUserInfo" />
 
     <input name="email" required="true"/>
 
