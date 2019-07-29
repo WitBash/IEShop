@@ -1,4 +1,4 @@
-package com.ieshop.chatbot;
+package com.boshko.ieshop.chatbot;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

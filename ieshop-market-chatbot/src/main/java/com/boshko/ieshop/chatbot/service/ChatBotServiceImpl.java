@@ -1,4 +1,4 @@
-package com.ieshop.chatbot.service;
+package com.boshko.ieshop.chatbot.service;
 
 import org.alicebot.ab.Bot;
 import org.alicebot.ab.Chat;

@@ -1,4 +1,4 @@
-package com.ieshop.chatbot.service;
+package com.boshko.ieshop.chatbot.service;
 
 public interface ChatBotService {
 
