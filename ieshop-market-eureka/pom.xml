@@ -9,7 +9,7 @@
         <version>2.1.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.ieshop.eureka</groupId>
+    <groupId>com.boshko.ieshop.eureka</groupId>
     <artifactId>ieshop-market-eureka</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>ieshop-market-eureka</name>
