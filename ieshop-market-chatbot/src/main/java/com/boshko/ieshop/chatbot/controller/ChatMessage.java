@@ -1,4 +1,4 @@
-package com.ieshop.chatbot.controller;
+package com.boshko.ieshop.chatbot.controller;
 
 import java.time.LocalDateTime;
 
