@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.boshko</groupId>
-	<artifactId>IEShop</artifactId>
+	<artifactId>ieshop</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>IEShop</name>
 	<description>Project for Spring Boot</description>
