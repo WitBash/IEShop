@@ -11,11 +11,13 @@ services:
 
   # Eureka server for service discovery
   ieshop-market-eureka-server:
+    build: ieshop-market-eureka/
     image: 'registry.heroku.com/ieshop-market-eureka/web:latest'
     ports:
       - '8761:8761'
 
   ieshop-market-chatbot-1:
+    build: ieshop-market-chatbot/
     image: 'registry.heroku.com/ieshop-market-chatbot/web:latest'
     environment:
       - 'BOT_NAME=chatbot1'
@@ -26,7 +28,7 @@ services:
       - ieshop-market-eureka-server
 
   ieshop-market-chatbot-2:
-
+    build: ieshop-market-chatbot/
     image: 'registry.heroku.com/ieshop-market-chatbot/web:latest'
     environment:
       - 'BOT_NAME=chatbot2'
@@ -37,6 +39,7 @@ services:
       - ieshop-market-eureka-server
 
   ieshop-market-chatbot-3:
+    build: ieshop-market-chatbot/
     image: 'registry.heroku.com/ieshop-market-chatbot/web:latest'
     environment:
       - 'BOT_NAME=chatbot3'
@@ -47,6 +50,7 @@ services:
       - ieshop-market-eureka-server
 
   ieshop-market-ui:
+    build: ieshop-market-ui/
     image: 'registry.heroku.com/ieshop-market-ui/web:latest'
     environment:
       - 'JDBC_DATABASE_URL=jdbc:mysql://host.docker.internal:3306/ieshop_db?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC'
@@ -57,6 +61,7 @@ services:
       - 'EUREKA_URI=http://ieshop-market-eureka-server:8761/eureka'
     ports:
       - '8081:8081'
+    network_mode: host
     depends_on:
       - redis
       - ieshop-market-eureka-server
